@@ -31,7 +31,7 @@ const users = [
     password: bcrypt.hashSync('Otheruser123!', 8),
     image: {
       url: "https://cdn.pixabay.com/photo/2024/11/20/09/14/christmas-9210799_1280.jpg",
-      alt: "Business Profile",
+      alt: "Another Profile",
     },
 
     isAdmin: false,
