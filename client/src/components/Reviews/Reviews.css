@@ -1,0 +1,27 @@
+.Reviews {
+
+   .a_body {
+      display: flex;
+      flex-direction: column;
+   }
+
+   .rev-header{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding-right: 15px
+   }
+   .icons{
+      display: flex;
+      gap: 30px;
+      align-items: end;
+   }
+
+   .icon{
+      cursor: pointer;
+   }
+   .my {
+      background-color: #8e8e8e;
+   }
+}

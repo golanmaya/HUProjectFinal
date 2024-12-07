@@ -1,0 +1,7 @@
+.About { 
+ /*css content here*/ 
+ padding: 50px;
+ display: flex;
+ flex-direction: column;
+ gap: 20px;
+}
