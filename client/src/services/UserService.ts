@@ -17,7 +17,6 @@ export const doSignIn = async (email: string, password: string): Promise<{ error
       body: JSON.stringify({ email, password })
     })
 
-    // let's extract the response body
     const body = await response.json();
 
     // the server returned status code not in the 200-299 range, so quit and return an error message
@@ -143,23 +142,23 @@ export const fetchUserDetails = async (): Promise<{ error: string | null, result
 
 export async function updateUser(user: IUserEdit): Promise<{ error: string | undefined, result: IUserDetails | undefined }> {
   try {
-      const token = await getToken()
-      console.log(user)
-      if (!token) return { error: 'No token found', result: undefined }
-      const response = await fetch(`${apiBase}/users/${user._id}`, {
-          method: 'PATCH',
-          headers: {
-              'Content-Type': 'application/json',
-              'x-auth-token': token,
-          },
-          body: JSON.stringify(user),
-      });
-      if (!response.ok) throw new Error(await response.text());
-      const data = await response.json();
-      const result: IUserDetails = data;
-      return { error: undefined, result: result }
+    const token = await getToken()
+    console.log(user)
+    if (!token) return { error: 'No token found', result: undefined }
+    const response = await fetch(`${apiBase}/users/${user._id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': token,
+      },
+      body: JSON.stringify(user),
+    });
+    if (!response.ok) throw new Error(await response.text());
+    const data = await response.json();
+    const result: IUserDetails = data;
+    return { error: undefined, result: result }
   } catch (error) {
-      throw (error);
+    throw (error);
   }
 }
 

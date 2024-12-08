@@ -30,19 +30,7 @@ export default function AddMovie() {
     // an indication whether we are busy (waiting for server's response)
     const [isBusy, setIsBusy] = useState<boolean>(false);
 
-    /*
-    a versatile function to sync form values to their corresponsing state object keys.
-  
-    Using it on a form input:
-    ------------------------
-    <input
-      name="name.first"               ---> this should correspond to the specific key name in your state object (the example shows a nested key, but a first-level key like 'phone' would work too)
-      value={formData.name.first}     ---> this is the actual key that holds the value in the state object
-      placeholder="First name"        
-      onChange={handleChange}         ---> the generic call to this function
-      type="text"                     ---> important. the function currently supports only 'text','number' & 'checkbox', but it can be easily extended.
-    />
-    */
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target;
         const keys = name.split('.');
@@ -73,9 +61,7 @@ export default function AddMovie() {
                 updatedValue = value; // Use the value directly for other input types
             }
 
-            // Clone the current state to avoid direct mutations
             const updatedState = { ...prevState };
-            // Update the nested object safely
             updateNestedObject(updatedState, keys, updatedValue);
 
             return updatedState;
@@ -86,12 +72,7 @@ export default function AddMovie() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsBusy(true)
-        // validate the form input against 'joi' schema.
-        // we add 'confirmPassword' to the object we sent for validation, so that joi can validate it too.
-        // { abortEarly:true} means that not all errors will be shown at once, but rather one at a time.
-        // also notice that we are destructuring {error} as 'joiError', that's because we already have a const with the same name down the line.
         const { error: joiError } = shcemaIMovieCreate.validate({ ...formData }, { abortEarly: true })
-        // if we get errors- let's show a toast.
         if (joiError) {
             // Handle validation errors
             const validationMessages = joiError.details.map(detail => detail.message)
