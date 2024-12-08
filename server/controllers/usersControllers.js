@@ -49,31 +49,6 @@ const getUserById = async (req, res) => {
   }
 };
 
-// const searchInUsers = async (req, res) => {
-//
-//   // validate the request's body using joi
-//   const { error, value } = schemas.searchUser.validate(req.body);
-//   // check if there are joi validation errors
-//   if (error) {
-//     const errorsArray = error.details.map((err) => err.message); // creates an array of error-message strings
-//     return res.status(400).json({ success: false, message: errorsArray });
-//   }
-//   // destructuring the variables from 'value'
-//   const { searchTerm, searchFields } = value;
-//
-//   try {
-//     // find the users containing the 'searchTerm' using our static 'multipleFieldsStringSearch' method
-//     const found = await User.multipleFieldsStringSearch(searchTerm,searchFields);
-//     // return the results (an empty array if not found)
-//     return res.status(found.length !== 0 ? 200 : 204).json({
-//       success: true,
-//       data: found,
-//     });
-//   } catch (err) {
-//     // return an error message
-//     return res.status(400).json({ success: false, message: err.message });
-//   }
-// };
 
 const createNewUser = async (req, res) => {
 
@@ -168,44 +143,13 @@ const updateUser = async (req, res) => {
   }
 };
 
-const updateIsBusinness = async (req, res) => {
-
-  // validate the request's body using joi
-  const { error, value } = schemas.updateIsBusinness.validate(req.body);
-  // check if there are joi validation errors
-  if (error) {
-    const errorsArray = error.details.map((err) => err.message); // creates an array of error-message strings
-    return res.status(400).json({ success: false, message: errorsArray });
-  }
-  // get the id from url (no need to parseInt, we're using string type id)
-  const { id } = req.params;
-  try {
-    const updated = await User.findByIdAndUpdate(id, value, { new: true }).select('-password').exec();
-    // not found- return a response and stop execution
-    if (!updated)
-      return res
-        .status(404)
-        .json({ success: false, message: `user id ${id} was not found.` });
-    // found- return a response
-    return res.status(200).json({
-      success: true,
-      updated: updated,
-    });
-  } catch (err) {
-    return res
-      .status(404)
-      .json({ success: false, message: `user id ${id} was not found.` });
-  }
-};
 
 
 module.exports = {
   getAllUsers,
   getUserById,
-  //searchInUsers,
   createNewUser,
   deleteUser,
   updateUser,
-  updateIsBusinness
-  //לבדוק
+
 };
