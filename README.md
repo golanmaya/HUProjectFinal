@@ -1,5 +1,7 @@
 ## pls note - iv'e added the readme file after ive sent the link
+
 ## PROJECT NAME: HUProjectFinal.JS ##
+
 # Description:
 -   This project is a backend service built with Node.js,
     Express, and MongoDB. It provides authentication and authorization features, user management, and movie card management.
@@ -48,12 +50,14 @@
     - Delete User By ID: 'DELETE /api/users/:id'
 3. Movies
     - Get All Movies: 'GET /api/movies'
+    - Get My Movies: 'GET /api/movies/my-movies'
     - Get Movie By ID: 'GET /api/movies/:id'
+    - Get Fav Movies: 'GET /api/movies/like/:id'
     - Create New Movie: 'POST /api/movies'
     - Update Movie By ID: 'PUT /api/movies/:id'
     - Delete Movie By ID: 'DELETE /api/movies/:id'
 4. Reviews
-    - Create New Reviewe: 'POST /api/reviewes'
+    - Create New Reviewe: 'POST /api/reviewes/:id'
     - Update Reviewe By ID: 'PUT /api/reviewes/:id'
     - Delete Reviewe By ID: 'DELETE /api/reviewes/:id'
 
